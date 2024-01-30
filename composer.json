@@ -1,0 +1,15 @@
+{
+    "name": "saqlain/php-custom-mvc",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Saqlainkhadim",
+            "email": "Saqlainkhadimbusiness@gmail.com"
+        }
+    ],
+    "require": {}
+}
