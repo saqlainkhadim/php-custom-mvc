@@ -12,7 +12,7 @@ class Request
         if ($position === false) {
             return $path;
         }
-        return substr($path, $position);
+        return substr($path, 0, $position);
     }
 
     public function getMethod()

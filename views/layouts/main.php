@@ -26,7 +26,9 @@
     </div>
 </nav>
 
-{{content}}
+<div class="container">
+    {{content}}
+</div>
 
 <script src="assets/bootstrap-5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>

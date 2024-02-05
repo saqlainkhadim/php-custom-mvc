@@ -1,1 +1,2 @@
-<h1>Welcome to home page</h1>
+<h1>Home</h1>
+<h3>welcome, <?php echo $name ?> </h3>
