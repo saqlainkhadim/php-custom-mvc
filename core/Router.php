@@ -40,7 +40,8 @@ class Router
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            Application::$app->controller = new $callback[0]();
+            $callback[0] = Application::$app->controller;
         }
 
         return call_user_func($callback, $this->request);
@@ -57,13 +58,14 @@ class Router
     private function layoutContent()
     {
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/layouts/main.php";
+        $view = Application::$app->controller->getLayout();
+        include_once Application::$ROOT_DIR . "/views/layouts/$view.php";
         return ob_get_clean();
     }
 
     private function renderOnlyView(string $view, $params = [])
     {
-        foreach ($params as $key => $value){
+        foreach ($params as $key => $value) {
             $$key = $value;
         }
 
