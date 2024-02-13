@@ -4,7 +4,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label>first name</label>
-                <input type="text" name="fist_name" class="form-control" \>
+                <input type="text" name="first_name" class="form-control" \>
             </div>
         </div>
         <div class="col-6">
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <label>confirm password</label>
-        <input type="password" name="c_password" class="form-control"/>
+        <input type="password" name="confirm_password" class="form-control"/>
     </div>
 
     <button type="submit" class="btn btn-primary">Register</button>
