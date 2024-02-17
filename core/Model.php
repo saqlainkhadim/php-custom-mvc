@@ -92,7 +92,7 @@ abstract class Model
 
     public function getFirstError($attribute): string
     {
-        return isset($this->errors[$attribute][0]) ?? '';
+        return $this->errors[$attribute][0] ?? '';
     }
 
 }
