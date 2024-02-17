@@ -67,8 +67,8 @@ abstract class Model
     {
         $message = $this->errorMessages()[$rule] ?? '';
 
-        foreach ($params as $key => $value){
-            $message = str_replace("{{$key}}",$value,$message);
+        foreach ($params as $key => $value) {
+            $message = str_replace("{{$key}}", $value, $message);
         }
 
         $this->errors[$attribute][] = $message;
@@ -83,6 +83,16 @@ abstract class Model
             self::RULE_MAX => 'Max length of this filed must be {max}',
             self::RULE_MATCH => 'This filed must be same as {match}',
         ];
+    }
+
+    public function hasError($attribute): bool
+    {
+        return isset($this->errors[$attribute]) ? true : false;
+    }
+
+    public function getFirstError($attribute): string
+    {
+        return isset($this->errors[$attribute][0]) ?? '';
     }
 
 }

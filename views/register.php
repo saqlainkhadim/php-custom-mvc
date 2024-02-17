@@ -4,7 +4,13 @@
         <div class="col-6">
             <div class="form-group">
                 <label>first name</label>
-                <input type="text" name="first_name" class="form-control" \>
+                <input type="text" name="first_name" value="<?php echo $model->first_name ?? ""; ?>"
+                       class="form-control <?php echo $model->hasError('first_name') ? 'is-invalid' :''; ;?>" \>
+                <div class="invalid-feedback">
+                    <?php echo $model->getFirstError('first_name') ?>
+                </div>
+
+
             </div>
         </div>
         <div class="col-6">
