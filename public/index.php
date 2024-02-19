@@ -9,7 +9,18 @@ use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\core\Application;
 
-$app = new Application(dirname(__DIR__));
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__."/../");
+$dotenv->load();
+
+$config = [
+    "db" => [
+        "dsn" => $_ENV['DB_DSN'],
+        "user" => $_ENV['DB_USER'],
+        "password" => $_ENV['DB_PASSWORD'],
+    ]
+];
+
+$app = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/hello', function () {
     return 'Hello world';
