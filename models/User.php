@@ -4,15 +4,32 @@
 namespace app\models;
 
 
+use app\core\DbModel;
 use app\core\Model;
 
-class RegisterModel extends Model
+class User extends DbModel
 {
     public string $first_name;
     public string $last_name;
     public string $email;
     public string $password;
     public string $confirm_password;
+
+    public function table():string
+    {
+        return 'users';
+    }
+
+    public function attributes():array
+    {
+        return [
+            'first_name',
+            'last_name',
+            'email',
+            'password',
+        ];
+
+    }
 
     public function rules(): array
     {
@@ -27,7 +44,7 @@ class RegisterModel extends Model
 
     public function register()
     {
-        return true;
+        return $this->save();
     }
 
 }
