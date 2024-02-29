@@ -22,19 +22,19 @@ class Field
     {
         return sprintf('
             <div class="form-group">
-                <label>%s</label>
+                <label class="text-capitalize">%s</label>
                 <input type="%s" name="%s" value="%s" class="form-control %s" \>
                 <div class="invalid-feedback">
                     %s
                 </div>
             </div>
         ',
-            $this->attribute,
+            str_replace('_',' ',$this->attribute),
             $this->type,
             $this->attribute,
             $this->model->{$this->attribute} ?? "",
-            $this->model->hasError('first_name') ? 'is-invalid' : '',
-            $this->model->getFirstError('first_name'),
+            $this->model->hasError($this->attribute) ? 'is-invalid' : '',
+            $this->model->getFirstError($this->attribute),
 
         );
     }

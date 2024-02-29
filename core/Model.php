@@ -11,6 +11,7 @@ abstract class Model
     public const RULE_MAX = 'max';
     public const RULE_MIN = 'min';
     public const RULE_MATCH = 'match';
+    public const RULE_UNIQUE = 'unique';
     public array $errors;
 
     abstract public function rules(): array;
@@ -57,6 +58,19 @@ abstract class Model
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
 
+                if ($ruleName === self::RULE_UNIQUE) {
+                    $uniqueAttribute = $rule['attribute'] ?? $attribute;
+                    $className = $rule['class'];
+                    $tableName = $className::table();
+                    $statement = Application::$app->db->prepare("Select EXISTS (Select * From $tableName where $uniqueAttribute = :attr )");
+                    $statement->bindValue(':attr', $value);
+                    $statement->execute();
+
+                    if($statement->fetchColumn()){
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $uniqueAttribute]);
+                    }
+                }
+
             }
         }
 
@@ -82,6 +96,7 @@ abstract class Model
             self::RULE_MIN => 'Min length of this filed must be {min}',
             self::RULE_MAX => 'Max length of this filed must be {max}',
             self::RULE_MATCH => 'This filed must be same as {match}',
+            self::RULE_UNIQUE => 'Record with this {field} already exists',
         ];
     }
 
